@@ -1,42 +1,40 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Compiled output (frontend)
+frontend/dist
+frontend/tmp
+frontend/out-tsc
+frontend/bazel-out
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Node (frontend)
+frontend/node_modules
+frontend/npm-debug.log
+frontend/yarn-error.log
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# IDEs and editors (frontend)
+frontend/.idea/
+frontend/.project
+frontend/.classpath
+frontend/.c9/
+frontend/*.launch
+frontend/.settings/
+frontend/*.sublime-workspace
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Visual Studio Code (frontend)
+frontend/.vscode/*
+!frontend/.vscode/settings.json
+!frontend/.vscode/tasks.json
+!frontend/.vscode/launch.json
+!frontend/.vscode/extensions.json
+frontend/.history/*
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# Miscellaneous (frontend)
+frontend/.angular/cache
+frontend/.sass-cache/
+frontend/connect.lock
+frontend/coverage
+frontend/libpeerconnection.log
+frontend/testem.log
+frontend/typings
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
+# System files (general)
 .DS_Store
 Thumbs.db
