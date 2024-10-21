@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { getPostComments } from "../services/comment.service";
 import {
   addCommentController,
   deleteCommentController,

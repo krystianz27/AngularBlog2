@@ -28,7 +28,7 @@ export const getPostCommentsController = async (
     return;
   }
 
-  const { postId } = req.body;
+  const { postId } = schemaValidator.data;
 
   const post = await getPostById(postId);
   if (!post) {

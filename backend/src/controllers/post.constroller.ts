@@ -11,11 +11,49 @@ import { z } from "zod";
 import { generateSlug } from "../shared/general.util";
 import { getCategoryById } from "../services/category.service";
 import { getTagsByIds } from "../services/tag.service";
-import { addPostTags } from "../services/post-tag.service";
+import { addPostTags, getPostTags } from "../services/post-tag.service";
 
 export const getAllPostsController = async (req: Request, res: Response) => {
-  const posts = await getAllPosts();
+  const schema = z.object({
+    categoryId: z.string().optional(),
+    tagId: z.string().optional(),
+  });
+
+  const schemaValidator = schema.safeParse(req.query);
+
+  if (!schemaValidator.success) {
+    res
+      .status(400)
+      .json({ message: "Invalid data", errors: schemaValidator.error });
+    return;
+  }
+
+  const { categoryId, tagId } = schemaValidator.data;
+
+  const posts = await getAllPosts({
+    categoryId: categoryId ? parseInt(categoryId) : undefined,
+    tagId: tagId ? parseInt(tagId) : undefined,
+  });
   res.json(posts);
+  return;
+};
+
+export const getPostBySlugController = async (req: Request, res: Response) => {
+  const { slug } = req.params;
+
+  if (!slug) {
+    res.status(400).json({ message: "Invalid slug" });
+    return;
+  }
+
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    res.status(400).json({ message: "Post not found" });
+    return;
+  }
+
+  res.json(post);
   return;
 };
 
@@ -38,16 +76,7 @@ export const addPostController = async (req: Request, res: Response) => {
 
   const { title, content, categoryId, tagIds } = req.body;
 
-  if (tagIds && tagIds.length > 0) {
-    const tags = await getTagsByIds(tagIds);
-
-    if (tags.length !== tagIds.length) {
-      res.status(400).json({
-        message: "Invalid tag ids",
-      });
-      return;
-    }
-  }
+  await validateTags(res, tagIds);
 
   let slug = generateSlug(title);
 
@@ -71,16 +100,19 @@ export const addPostController = async (req: Request, res: Response) => {
   if (tagIds && tagIds.length > 0) {
     addPostTags(post.id, tagIds);
   }
+
   res.status(201).json(post);
+  return;
 };
 
 export const updatePostController = async (req: Request, res: Response) => {
   const userId = 1;
   const schema = z.object({
     id: z.number(),
-    title: z.string().min(1),
-    content: z.string().min(1),
-    categoryId: z.number(),
+    title: z.string().min(1).optional(),
+    content: z.string().min(1).optional(),
+    categoryId: z.number().optional(),
+    tagIds: z.array(z.number()).optional(),
   });
 
   const schemaValidator = schema.safeParse(req.body);
@@ -93,9 +125,11 @@ export const updatePostController = async (req: Request, res: Response) => {
     return;
   }
 
-  const { id, title, content, categoryId } = req.body;
+  let { id, title, content, categoryId, tagIds } = req.body;
 
   const post = await getPostById(id);
+
+  await validateTags(res, tagIds);
 
   if (!post) {
     res.status(404).json({ message: "Post not found" });
@@ -107,14 +141,17 @@ export const updatePostController = async (req: Request, res: Response) => {
     return;
   }
 
-  const category = await getCategoryById(categoryId);
-  if (!category) {
-    res.status(400).json({ message: "Invalid category" });
-    return;
+  if (categoryId) {
+    const category = await getCategoryById(categoryId);
+    if (!category) {
+      res.status(400).json({ message: "Invalid category" });
+      return;
+    }
   }
+
   let slug;
 
-  if (title !== post.title) {
+  if (title && title !== post.title) {
     slug = generateSlug(title);
 
     const postWithGivenSlugName = await getPostBySlug(slug);
@@ -124,6 +161,19 @@ export const updatePostController = async (req: Request, res: Response) => {
   }
 
   const updatedPost = await updatePost(id, title, content, categoryId, slug);
+
+  const postTagsRelations = await getPostTags(id);
+
+  if (tagIds && tagIds.length > 0) {
+    tagIds = tagIds?.filter((tagId: number | undefined) => {
+      const postTag = postTagsRelations.find((postTagRelation) => {
+        return postTagRelation.tagId === tagId;
+      });
+      return !postTag;
+    });
+
+    if (tagIds.length > 0) await addPostTags(post.id, tagIds);
+  }
 
   res.json(updatedPost);
   return;
@@ -165,3 +215,16 @@ export const deletePostController = async (req: Request, res: Response) => {
   res.json(post);
   return;
 };
+
+async function validateTags(res: Response, tagIds?: number[]) {
+  if (tagIds && tagIds.length > 0) {
+    const tags = await getTagsByIds(tagIds);
+
+    if (tags.length !== tagIds.length) {
+      res.status(400).json({
+        message: "Invalid tag ids",
+      });
+      return;
+    }
+  }
+}

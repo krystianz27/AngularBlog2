@@ -1,4 +1,5 @@
 import { Comment } from "../models/Comment";
+import { User } from "../models/User";
 
 export const getAllComments = async () => {
   return await Comment.findAll();
@@ -6,6 +7,14 @@ export const getAllComments = async () => {
 
 export const getPostComments = async (postId: number) => {
   return await Comment.findAll({
+    include: [
+      {
+        model: User,
+        attributes: {
+          exclude: ["password"],
+        },
+      },
+    ],
     where: { postId },
   });
 };
@@ -19,6 +28,8 @@ export const addComment = async (
   comment.postId = postId;
   comment.userId = userId;
   comment.content = content;
+
+  console.log(comment.content);
 
   return await comment.save();
 };

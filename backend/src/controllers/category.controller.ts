@@ -16,6 +16,21 @@ export const getCategories = async (req: Request, res: Response) => {
   res.json(categories);
 };
 
+export const getCategoryBySlugController = async (
+  req: Request,
+  res: Response
+) => {
+  const { slug } = req.params;
+  const category = await getCategoryBySlug(slug);
+
+  if (!category) {
+    res.status(404).json({ message: "Category not found" });
+    return;
+  }
+
+  res.json(category);
+};
+
 export const addCategoryController = async (req: Request, res: Response) => {
   const schema = z.object({
     name: z.string().min(1),
