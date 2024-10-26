@@ -7,6 +7,7 @@ import {
   getPostComments,
   updateComment,
 } from "../services/comment.service";
+import { User } from "../models/User";
 
 export const getPostCommentsController = async (
   req: Request,
@@ -48,6 +49,10 @@ export const addCommentController = async (req: Request, res: Response) => {
     content: z.string().min(1),
   });
 
+  console.log("$$$$$$$$$$$$$$$$$");
+
+  const user: User = (req as any).user;
+
   const schemaValidator = schema.safeParse(req.body);
 
   if (!schemaValidator.success) {
@@ -60,7 +65,7 @@ export const addCommentController = async (req: Request, res: Response) => {
 
   const { postId, content } = req.body;
 
-  const userId = 1;
+  const userId = user.get("id");
 
   const post = await getPostById(postId);
   if (!post) {
@@ -80,6 +85,8 @@ export const updateCommentController = async (req: Request, res: Response) => {
     content: z.string().min(1),
   });
 
+  const user = (req as any).user as User;
+
   const schemaValidator = schema.safeParse(req.body);
 
   if (!schemaValidator.success) {
@@ -91,7 +98,7 @@ export const updateCommentController = async (req: Request, res: Response) => {
   }
 
   const { commentId, content } = schemaValidator.data;
-  const userId = 1;
+  const userId = user.get("id");
 
   const comment = await getCommendById(commentId);
 
@@ -118,6 +125,8 @@ export const deleteCommentController = async (req: Request, res: Response) => {
     commentId: z.number(),
   });
 
+  const user = (req as any).user as User;
+
   const schemaValidator = schema.safeParse(req.body);
 
   if (!schemaValidator.success) {
@@ -129,7 +138,7 @@ export const deleteCommentController = async (req: Request, res: Response) => {
   }
 
   const { commentId } = schemaValidator.data;
-  const userId = 1;
+  const userId = user.get("id");
 
   const comment = await getCommendById(commentId);
   if (!comment) {

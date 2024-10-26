@@ -56,6 +56,8 @@ export const registerController = async (req: Request, res: Response) => {
 
   const token = generateToken(user.id);
 
+  // console.log("TOKEN:", token);
+
   await addToken(token, "activation", user.id);
 
   await sendConfirmationEmail(email, token);
@@ -117,7 +119,7 @@ export const loginController = async (req: Request, res: Response) => {
 
   delete session.user.password;
 
-  res.json({ message: "User logged in successfully", session });
+  res.json(session);
   return;
 };
 
@@ -205,7 +207,7 @@ export const logoutController = async (req: Request, res: Response) => {
 
 export const confirmEmailController = async (req: Request, res: Response) => {
   const { token } = req.params;
-
+  console.log("Received token:", token);
   const isTokenValid = verifyToken(token);
 
   if (!isTokenValid) {
@@ -213,10 +215,14 @@ export const confirmEmailController = async (req: Request, res: Response) => {
     return;
   }
 
+  console.log("TOKEN TO@", token);
+
   const dbToken = await getToken(token);
 
+  console.log("token confirm: ", dbToken);
+
   if (!dbToken || dbToken.get("type") !== "activation") {
-    res.status(400).json({ message: "Invalid token" });
+    res.status(400).json({ message: "Invalid token!@" });
     return;
   }
 
@@ -227,18 +233,20 @@ export const confirmEmailController = async (req: Request, res: Response) => {
     return;
   }
 
+  console.log("TOKEN DELETE");
+
   await updateUser(userId, undefined, undefined, "active");
 
   await deleteTokens(userId);
 
-  res.status(200).json({ message: "Email confirmed" });
+  // res.status(200).json({ message: "Email confirmed" });
+  res.redirect(process.env.FRONTEND_URL + "/auth/login");
   return;
 };
 
 export const forgotPasswordController = async (req: Request, res: Response) => {
   const schema = z.object({
     email: z.string().email(),
-    callbackUrl: z.string().url(),
   });
 
   const schemaValidator = schema.safeParse(req.body);
@@ -247,7 +255,7 @@ export const forgotPasswordController = async (req: Request, res: Response) => {
     res.status(400).json(schemaValidator.error);
     return;
   }
-  const { email, callbackUrl } = schemaValidator.data;
+  const { email } = schemaValidator.data;
 
   const user = await getUserByEmail(email);
 
@@ -261,7 +269,7 @@ export const forgotPasswordController = async (req: Request, res: Response) => {
 
   await addToken(token, "reset", user.get("id"));
 
-  await sendForgotPasswordEmail(email, token, callbackUrl);
+  await sendForgotPasswordEmail(email, token);
 
   res.status(200).json({ message: "Email has been sent." });
   return;
@@ -289,10 +297,14 @@ export const resetPasswordController = async (req: Request, res: Response) => {
     return;
   }
 
+  console.log("Token####", token);
+
   const dbToken = await getToken(token);
 
+  console.log("DBToken####", token);
+
   if (!dbToken || dbToken.get("type") !== "reset") {
-    res.status(400).json({ message: "Invalid token." });
+    res.status(400).json({ message: "Invalid token.!@@" });
     return;
   }
 

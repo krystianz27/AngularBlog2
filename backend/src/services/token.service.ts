@@ -20,5 +20,6 @@ export const deleteTokens = async (userId: number) => {
 };
 
 export const getToken = async (token: string) => {
+  console.log("Token being searched:", token);
   return await Token.findOne({ where: { token } });
 };

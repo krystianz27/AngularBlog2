@@ -12,6 +12,7 @@ import { generateSlug } from "../shared/general.util";
 import { getCategoryById } from "../services/category.service";
 import { getTagsByIds } from "../services/tag.service";
 import { addPostTags, getPostTags } from "../services/post-tag.service";
+import { User } from "../models/User";
 
 export const getAllPostsController = async (req: Request, res: Response) => {
   const schema = z.object({
@@ -74,6 +75,8 @@ export const addPostController = async (req: Request, res: Response) => {
     return;
   }
 
+  const user = (req as any).user as User;
+
   const { title, content, categoryId, tagIds } = req.body;
 
   await validateTags(res, tagIds);
@@ -95,7 +98,7 @@ export const addPostController = async (req: Request, res: Response) => {
     return;
   }
 
-  const post = await addPost(title, content, categoryId, 1, slug);
+  const post = await addPost(title, content, categoryId, user.get("id"), slug);
 
   if (tagIds && tagIds.length > 0) {
     addPostTags(post.id, tagIds);
@@ -106,7 +109,9 @@ export const addPostController = async (req: Request, res: Response) => {
 };
 
 export const updatePostController = async (req: Request, res: Response) => {
-  const userId = 1;
+  const user = (req as any).user as User;
+  const userId = user.get("id");
+
   const schema = z.object({
     id: z.number(),
     title: z.string().min(1).optional(),
@@ -180,7 +185,8 @@ export const updatePostController = async (req: Request, res: Response) => {
 };
 
 export const deletePostController = async (req: Request, res: Response) => {
-  const userId = 1;
+  const user = (req as any).user as User;
+  const userId = user.get("id");
 
   const schema = z.object({
     id: z.number(),

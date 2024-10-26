@@ -10,6 +10,7 @@ import { z } from "zod";
 import { generateSlug } from "../shared/general.util";
 import { getPostById } from "../services/post.service";
 import { getPostTags } from "../services/post-tag.service";
+import { User } from "../models/User";
 
 export const getTagsController = async (
   req: Request,
@@ -33,8 +34,9 @@ export const addTagController = async (
       message: "Invalid data",
       errors: schemaValidator.error,
     });
-    // return;
   }
+  const user = (req as any).user as User;
+
   const { name } = req.body;
 
   let slug = generateSlug(name);
@@ -45,7 +47,7 @@ export const addTagController = async (
     slug = generateSlug(name, true);
   }
 
-  const newTag = await addTag(name, slug, 1);
+  const newTag = await addTag(name, slug, user.get("id"));
 
   res.status(201).json(newTag);
   return;

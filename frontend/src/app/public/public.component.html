@@ -1,5 +1,9 @@
-<app-header></app-header>
+<div class="bg-gray-100 min-h-screen flex flex-col overflow-auto">
+  <app-header></app-header>
 
-<router-outlet></router-outlet>
+  <div class="flex-grow container mx-auto py-10 px-40">
+    <router-outlet></router-outlet>
+  </div>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
+</div>

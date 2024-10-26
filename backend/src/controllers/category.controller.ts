@@ -9,6 +9,7 @@ import {
 } from "../services/category.service";
 import { generateSlug } from "../shared/general.util";
 import { z } from "zod";
+import { User } from "../models/User";
 
 export const getCategories = async (req: Request, res: Response) => {
   const categories = await getAllCategories();
@@ -35,6 +36,9 @@ export const addCategoryController = async (req: Request, res: Response) => {
   const schema = z.object({
     name: z.string().min(1),
   });
+
+  const user = (req as any).user as User;
+
   const schemaValidator = schema.safeParse(req.body);
 
   if (!schemaValidator.success) {
@@ -45,7 +49,7 @@ export const addCategoryController = async (req: Request, res: Response) => {
   }
 
   const { name } = req.body;
-  const userId = 1;
+  const userId = user.get("id");
   let slug = generateSlug(name);
 
   const categoryBySlug = await getCategoryBySlug(slug);
