@@ -24,6 +24,11 @@ const routes: Routes = [
             (m) => m.CategoriesModule
           ),
       },
+      {
+        path: 'about',
+        loadChildren: () =>
+          import('./features/about/about.module').then((m) => m.AboutModule),
+      },
     ],
   },
 ];
