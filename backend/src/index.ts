@@ -13,6 +13,7 @@ import commentRoutes from "./routes/comment.routes";
 import authRoutes from "./routes/auth.routes";
 import logger from "./shared/logger.util";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,6 +27,16 @@ app.use("/api/tags", tagRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/auth", authRoutes);
+
+app.use((req, res, next) => {
+  if (!req.path.startsWith("/api")) {
+    res.sendFile(
+      path.resolve(__dirname, "../frontend/dist/frontend/index.html")
+    );
+  } else {
+    next();
+  }
+});
 
 app.use((err: Error, req: Request, res: Response, next: any) => {
   logger.error({
