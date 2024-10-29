@@ -37,6 +37,7 @@ export const getAllPosts = async (filters: {
           : undefined,
       },
     ],
+    order: [["createdAt", "DESC"]],
   });
 };
 
@@ -96,7 +97,7 @@ export const updatePost = async (
   return await post.save();
 };
 
-export const deletePost = async (postId: number) => {
+export const deletePost = async (postId: number | number[]) => {
   return await Post.destroy({
     where: { id: postId },
   });

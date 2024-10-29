@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
+
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "../models/User";
@@ -37,7 +38,7 @@ export function verifyToken(token: string) {
 export async function authenticateJWT(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: Function
 ) {
   const token = req.header("authorization")?.replace("Bearer", "").trim();
   if (!token) {
@@ -45,6 +46,51 @@ export async function authenticateJWT(
     return;
   }
 
+  await authenticateJWT_admin(res, req, next, token);
+
+  // const verified = verifyToken(token);
+
+  // if (!verified) {
+  //   res.status(403).json({ message: "Invalid token" });
+  //   return;
+  // }
+
+  // try {
+  //   const user = await User.findByPk((verified as any).userId);
+
+  //   if (!user) {
+  //     res.status(403).json({ message: "User not found" });
+  //     return;
+  //   }
+
+  //   (req as any).user = user;
+  //   next();
+  // } catch (error) {
+  //   res.status(500).json({ message: "Server error" });
+  //   return;
+  // }
+}
+
+export async function authenticateJWTOptional(
+  req: Request,
+  res: Response,
+  next: Function
+) {
+  const token = req.header("authorization")?.replace("Bearer", "").trim();
+
+  await authenticateJWT_admin(res, req, next, token);
+}
+
+async function authenticateJWT_admin(
+  res: Response,
+  req: Request,
+  next: Function,
+  token?: string
+) {
+  if (!token) {
+    next();
+    return;
+  }
   const verified = verifyToken(token);
 
   if (!verified) {

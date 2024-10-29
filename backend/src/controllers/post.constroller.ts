@@ -11,14 +11,21 @@ import { z } from "zod";
 import { generateSlug } from "../shared/general.util";
 import { getCategoryById } from "../services/category.service";
 import { getTagsByIds } from "../services/tag.service";
-import { addPostTags, getPostTags } from "../services/post-tag.service";
+import {
+  addPostTags,
+  deletePostTagRelations,
+  getPostTags,
+} from "../services/post-tag.service";
 import { User } from "../models/User";
+import { getTotalCommentsByPostIds } from "../services/comment.service";
 
 export const getAllPostsController = async (req: Request, res: Response) => {
   const schema = z.object({
     categoryId: z.string().optional(),
     tagId: z.string().optional(),
   });
+
+  const user = (req as any).user as User;
 
   const schemaValidator = schema.safeParse(req.query);
 
@@ -34,8 +41,25 @@ export const getAllPostsController = async (req: Request, res: Response) => {
   const posts = await getAllPosts({
     categoryId: categoryId ? parseInt(categoryId) : undefined,
     tagId: tagId ? parseInt(tagId) : undefined,
+    userId: user.id,
   });
-  res.json(posts);
+
+  let postIds = posts.map((post) => post.id);
+
+  const totalCommentsByPostIds = await getTotalCommentsByPostIds(postIds);
+
+  // adding total comments to each post
+  const postsWithTotalComments = posts.map((post) => {
+    const totalComments = totalCommentsByPostIds.find(
+      (totalCommentsByPostId) => totalCommentsByPostId.postId === post.id
+    );
+
+    return {
+      ...post.toJSON(),
+      totalComments: totalComments?.get("totalComments") || 0,
+    };
+  });
+  res.json(postsWithTotalComments);
   return;
 };
 
@@ -169,6 +193,10 @@ export const updatePostController = async (req: Request, res: Response) => {
 
   const postTagsRelations = await getPostTags(id);
 
+  if (tagIds) {
+    const tagidsToDelete = postTagsRelations.filter;
+  }
+
   if (tagIds && tagIds.length > 0) {
     tagIds = tagIds?.filter((tagId: number | undefined) => {
       const postTag = postTagsRelations.find((postTagRelation) => {
@@ -215,6 +243,8 @@ export const deletePostController = async (req: Request, res: Response) => {
     res.status(403).json({ message: "Unauthorized to delete" });
     return;
   }
+
+  await deletePostTagRelations({ postId: id });
 
   await deletePost(id);
 

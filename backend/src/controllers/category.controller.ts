@@ -10,9 +10,16 @@ import {
 import { generateSlug } from "../shared/general.util";
 import { z } from "zod";
 import { User } from "../models/User";
+import { deletePost, getAllPosts } from "../services/post.service";
+import { deletePostTagRelations } from "../services/post-tag.service";
+import { deletePostComments } from "../services/comment.service";
 
 export const getCategories = async (req: Request, res: Response) => {
-  const categories = await getAllCategories();
+  const user = (req as any).user as User;
+
+  const categories = await getAllCategories({
+    userId: user.get("id"),
+  });
 
   res.json(categories);
 };
@@ -121,8 +128,21 @@ export const deleteCategoryController = async (req: Request, res: Response) => {
     res.status(404).json({ message: "Category not found" });
     return;
   }
+  const posts = await getAllPosts({
+    categoryId: id,
+  });
+
+  const postIds = posts.map((post) => post.get("id"));
+
+  await deletePostTagRelations({
+    postId: postIds,
+  });
+
+  await deletePostComments(postIds);
+
+  await deletePost(postIds);
 
   await deleteCategory(id);
 
-  res.json({ message: "delete category" });
+  res.json(category);
 };

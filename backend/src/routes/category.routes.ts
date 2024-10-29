@@ -6,11 +6,11 @@ import {
   getCategoryBySlugController,
   updateCategoryController,
 } from "../controllers/category.controller";
-import { authenticateJWT } from "../shared/auth.util";
+import { authenticateJWT, authenticateJWTOptional } from "../shared/auth.util";
 
 const router = Router();
 
-router.get("/", getCategories);
+router.get("/", authenticateJWTOptional, getCategories);
 router.get("/slug/:slug", getCategoryBySlugController);
 router.post("/", authenticateJWT, addCategoryController);
 router.put("/", authenticateJWT, updateCategoryController);

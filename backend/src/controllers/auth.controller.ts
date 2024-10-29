@@ -103,7 +103,7 @@ export const loginController = async (req: Request, res: Response) => {
     return;
   }
 
-  const accessToken = generateToken(user.get("id"));
+  const accessToken = generateToken(user.get("id"), "7d");
   const refreshToken = generateToken(user.get("id"), "7d");
 
   await deleteTokens(user.get("id"));

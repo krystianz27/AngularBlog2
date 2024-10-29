@@ -9,14 +9,21 @@ import {
 import { z } from "zod";
 import { generateSlug } from "../shared/general.util";
 import { getPostById } from "../services/post.service";
-import { getPostTags } from "../services/post-tag.service";
+import {
+  deletePostTagRelations,
+  getPostTags,
+} from "../services/post-tag.service";
 import { User } from "../models/User";
 
 export const getTagsController = async (
   req: Request,
   res: Response
 ): Promise<any> => {
-  const tags = await getallTags();
+  const user = (req as any).user as User;
+
+  const tags = await getallTags({
+    userId: user.get("id"),
+  });
   return res.json(tags);
 };
 
@@ -118,6 +125,8 @@ export const deleteTagController = async (
   if (!tag) {
     return res.status(404).json({ message: "Tag not found" });
   }
+
+  await deletePostTagRelations({ tagId: id });
 
   await deleteTag(id);
 
