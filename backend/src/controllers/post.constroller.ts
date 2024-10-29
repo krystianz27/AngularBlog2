@@ -41,7 +41,7 @@ export const getAllPostsController = async (req: Request, res: Response) => {
   const posts = await getAllPosts({
     categoryId: categoryId ? parseInt(categoryId) : undefined,
     tagId: tagId ? parseInt(tagId) : undefined,
-    userId: user.id,
+    userId: user?.id,
   });
 
   let postIds = posts.map((post) => post.id);

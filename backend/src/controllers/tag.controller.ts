@@ -22,7 +22,7 @@ export const getTagsController = async (
   const user = (req as any).user as User;
 
   const tags = await getallTags({
-    userId: user.get("id"),
+    userId: user?.get("id"),
   });
   return res.json(tags);
 };
@@ -54,7 +54,7 @@ export const addTagController = async (
     slug = generateSlug(name, true);
   }
 
-  const newTag = await addTag(name, slug, user.get("id"));
+  const newTag = await addTag(name, slug, user?.get("id"));
 
   res.status(201).json(newTag);
   return;
