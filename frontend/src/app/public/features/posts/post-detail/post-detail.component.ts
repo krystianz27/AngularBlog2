@@ -60,11 +60,9 @@ export class PostDetailComponent {
 
   loadComments() {
     if (this.post) {
-      this.commentService
-        .getCommentsByPostId(this.post.id)
-        .subscribe((data) => {
-          this.comments = data;
-        });
+      this.commentService.getComments(this.post.id).subscribe((data) => {
+        this.comments = data;
+      });
     }
   }
 

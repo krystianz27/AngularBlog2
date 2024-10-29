@@ -1,44 +1,47 @@
-import { Component, inject } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Component, inject } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import moment from 'moment';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon } from '@angular/material/icon';
 import { lastValueFrom } from 'rxjs';
 import { RouterModule } from '@angular/router';
-import { ITag } from '../../../../core/interfaces/models/tag.model.interface';
-import { TagService } from '../../../../core/services/tag.service';
+
+import { IPost } from '../../../../core/interfaces/models/post.model.interface';
+import { PostService } from '../../../../core/services/post.service';
 
 @Component({
-  selector: 'app-tags-list',
+  selector: 'app-posts-list',
   standalone: true,
   imports: [
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatIconModule,
+    MatIcon,
     RouterModule,
   ],
-  templateUrl: './tags-list.component.html',
-  styleUrl: './tags-list.component.scss',
+  templateUrl: './posts-list.component.html',
+  styleUrl: './posts-list.component.scss',
 })
-export class TagsListComponent {
+export class PostsListComponent {
   moment = moment;
   displayedColumns: string[] = [
     'select',
     'id',
-    'name',
+    'title',
+    'totalComments',
+    'categoryId',
     'createdAt',
     'updatedAt',
     'actions',
   ];
-  dataSource = new MatTableDataSource<ITag>([]);
-  selection = new SelectionModel<ITag>(true, []);
-  tagService = inject(TagService);
+  dataSource = new MatTableDataSource<IPost>([]);
+  selection = new SelectionModel<IPost>(true, []);
+  postService = inject(PostService);
 
   constructor() {
-    this.loadTags();
+    this.loadPosts();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -59,29 +62,30 @@ export class TagsListComponent {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: ITag): string {
+  checkboxLabel(row?: IPost): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} `;
   }
 
-  loadTags() {
-    this.tagService.getTags().subscribe((tags) => {
+  loadPosts() {
+    this.postService.getPosts({}).subscribe((tags) => {
       this.dataSource.data = tags;
     });
   }
 
-  deleteSelectedTags() {
+  deleteSelectedPosts() {
     const selectedTags = this.selection.selected;
-    const selectedTagIds = selectedTags.map((category) => category.id);
-    let promises = selectedTagIds.map((id) => {
-      let ob = this.tagService.deleteTag(id);
+    const selectedCategoryIds = selectedTags.map((category) => category.id);
+    let promises = selectedCategoryIds.map((id) => {
+      let ob = this.postService.deletePost(id);
+      // convert into promise
       return lastValueFrom(ob);
     });
+
     Promise.all(promises).then(() => {
-      this.loadTags();
-      this.selection.clear();
+      this.loadPosts();
     });
   }
 }

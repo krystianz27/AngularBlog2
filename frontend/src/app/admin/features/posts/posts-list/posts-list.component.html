@@ -1,13 +1,16 @@
 <div class="p-5">
-  <h1 class="text-left">Comments</h1>
+  <h1 class="text-left">Posts</h1>
+
   <div class="flex justify-between items-center mb-5">
+    <button mat-raised-button routerLink="/admin/posts/add">Create</button>
     <button
-      (click)="deleteSelectedComments()"
+      (click)="deleteSelectedPosts()"
       [disabled]="!selection.hasValue()"
       mat-raised-button
       color="warn"
     >
       Delete
+
       <mat-icon>delete</mat-icon>
     </button>
   </div>
@@ -27,8 +30,8 @@
       </th>
       <td mat-cell *matCellDef="let row">
         <mat-checkbox
-          color="primary"
           (click)="$event.stopPropagation()"
+          color="primary"
           (change)="$event ? selection.toggle(row) : null"
           [checked]="selection.isSelected(row)"
           [aria-label]="checkboxLabel(row)"
@@ -37,19 +40,33 @@
       </td>
     </ng-container>
 
-    <!-- Position Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID.</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="content">
-      <th mat-header-cell *matHeaderCellDef>Content</th>
-      <td mat-cell *matCellDef="let element">{{ element.content }}</td>
+    <ng-container matColumnDef="totalComments">
+      <th mat-header-cell *matHeaderCellDef>Comments</th>
+      <td mat-cell *matCellDef="let element">
+        <a
+          [routerLink]="'/admin/comments/' + element.id"
+          (click)="$event.stopImmediatePropagation()"
+        >
+          {{ element.totalComments }}
+        </a>
+      </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="categoryId">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let element">{{ element.category.name }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef>Created At</th>
       <td mat-cell *matCellDef="let element">
@@ -57,11 +74,22 @@
       </td>
     </ng-container>
 
-    <!-- Symbol Column -->
     <ng-container matColumnDef="updatedAt">
       <th mat-header-cell *matHeaderCellDef>Updated At</th>
       <td mat-cell *matCellDef="let element">
         {{ moment(element.updatedAt).fromNow() }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          [routerLink]="['/admin/posts/edit', element.slug]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
       </td>
     </ng-container>
 

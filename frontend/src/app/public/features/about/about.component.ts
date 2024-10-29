@@ -10,5 +10,5 @@ export class AboutComponent {
   description: string =
     'To jest przykładowy projekt wykorzystujący Angular na frontendzie i Express.js na backendzie.';
   version: string = '1.0.0';
-  author: string = 'Twoje Imię';
+  author: string = 'Krystian';
 }

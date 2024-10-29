@@ -14,7 +14,7 @@ export class CommentService {
 
   constructor() {}
 
-  getCommentsByPostId(postId: number) {
+  getComments(postId: number) {
     return this.httpClient.get<IComment[]>(`${this.baseUrl}/${postId}`);
   }
 
@@ -24,6 +24,14 @@ export class CommentService {
     return this.httpClient.post<IComment>(`${this.baseUrl}`, {
       content,
       postId,
+    });
+  }
+
+  deleteComment(commentId: number) {
+    return this.httpClient.delete<IComment>(`${this.baseUrl}`, {
+      body: {
+        commentId,
+      },
     });
   }
 }

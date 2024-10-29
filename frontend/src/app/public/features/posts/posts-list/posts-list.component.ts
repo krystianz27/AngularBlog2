@@ -2,11 +2,12 @@ import { AfterContentInit, Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PostService } from '../../../../core/services/post.service';
 import { IPost } from '../../../../core/interfaces/models/post.model.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-posts-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './posts-list.component.html',
   styleUrl: './posts-list.component.scss',
 })
