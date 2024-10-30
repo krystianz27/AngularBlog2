@@ -17,7 +17,10 @@ import {
   getPostTags,
 } from "../services/post-tag.service";
 import { User } from "../models/User";
-import { getTotalCommentsByPostIds } from "../services/comment.service";
+import {
+  deletePostComments,
+  getTotalCommentsByPostIds,
+} from "../services/comment.service";
 
 export const getAllPostsController = async (req: Request, res: Response) => {
   const schema = z.object({
@@ -230,7 +233,7 @@ export const deletePostController = async (req: Request, res: Response) => {
     return;
   }
 
-  const { id } = req.body;
+  const { id } = schemaValidator.data;
 
   const post = await getPostById(id);
 
@@ -245,6 +248,8 @@ export const deletePostController = async (req: Request, res: Response) => {
   }
 
   await deletePostTagRelations({ postId: id });
+
+  await deletePostComments(id);
 
   await deletePost(id);
 
