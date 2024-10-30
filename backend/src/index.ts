@@ -31,7 +31,7 @@ app.use("/api/auth", authRoutes);
 app.use((req, res, next) => {
   if (!req.path.startsWith("/api")) {
     res.sendFile(
-      path.resolve(__dirname, "../frontend/dist/frontend/index.html")
+      path.resolve(__dirname, "../../frontend/dist/frontend/browser/index.html")
     );
   } else {
     next();
