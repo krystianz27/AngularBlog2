@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { NotFoundComponent } from './core/errors/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -17,5 +18,9 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./public/features/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];

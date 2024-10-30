@@ -641,3 +641,30 @@
     Error: ENOENT: no such file or directory, stat 'C:\Users\Krystian\Desktop\AngularBlog\frontend\dist\frontend\index.html'
 2024-10-30T01:13:01.661Z error: ENOENT: no such file or directory, stat 'C:\Users\Krystian\Desktop\AngularBlog\frontend\dist\frontend\index.html'
     Error: ENOENT: no such file or directory, stat 'C:\Users\Krystian\Desktop\AngularBlog\frontend\dist\frontend\index.html'
+2024-10-30T01:20:36.344Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T01:20:44.581Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T01:21:19.164Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T16:56:05.854Z error: getaddrinfo ENOTFOUND mysql
+    SequelizeHostNotFoundError: getaddrinfo ENOTFOUND mysql
+        at ConnectionManager.connect (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\connection-manager.js:120:17)
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async ConnectionManager._connect (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\connection-manager.js:332:24)
+        at async C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\connection-manager.js:250:32

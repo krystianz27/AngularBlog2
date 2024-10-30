@@ -240,7 +240,7 @@ export const confirmEmailController = async (req: Request, res: Response) => {
   await deleteTokens(userId);
 
   // res.status(200).json({ message: "Email confirmed" });
-  res.redirect(process.env.FRONTEND_URL + "/auth/login");
+  res.redirect(process.env.FRONTEND_URL + "#/auth/login");
   return;
 };
 

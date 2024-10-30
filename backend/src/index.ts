@@ -13,7 +13,6 @@ import commentRoutes from "./routes/comment.routes";
 import authRoutes from "./routes/auth.routes";
 import logger from "./shared/logger.util";
 import cors from "cors";
-import path from "path";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -30,9 +29,7 @@ app.use("/api/auth", authRoutes);
 
 app.use((req, res, next) => {
   if (!req.path.startsWith("/api")) {
-    res.sendFile(
-      path.resolve(__dirname, "../../frontend/dist/frontend/browser/index.html")
-    );
+    res.json({ message: "DASdas las" });
   } else {
     next();
   }
