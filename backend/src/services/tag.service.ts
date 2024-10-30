@@ -1,14 +1,15 @@
 import { z } from "zod";
 import { Tag } from "../models/Tag";
 
-export const getallTags = async (filters?: { userId?: number }) => {
+export const getAllTags = (filters?: { userId?: number }) => {
   const where: any = {};
-
-  if (filters && filters.userId) {
-    where.userId = filters.userId;
+  if (filters) {
+    if (filters.userId) {
+      where.userId = filters.userId;
+    }
   }
-  return await Tag.findAll({
-    order: ["createdAt", "DESC"],
+  return Tag.findAll({
+    order: [["createdAt", "DESC"]],
     where,
   });
 };

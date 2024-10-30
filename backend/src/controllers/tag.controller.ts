@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import {
   addTag,
   deleteTag,
-  getallTags,
+  getAllTags,
   getTagById,
   getTagBySlug,
 } from "../services/tag.service";
@@ -21,10 +21,11 @@ export const getTagsController = async (
 ): Promise<any> => {
   const user = (req as any).user as User;
 
-  const tags = await getallTags({
+  const tags = await getAllTags({
     userId: user?.get("id"),
   });
-  return res.json(tags);
+  res.json(tags);
+  return;
 };
 
 export const addTagController = async (

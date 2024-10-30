@@ -19,15 +19,6 @@ export class AuthService {
   router = inject(Router);
   session?: Session;
 
-  // constructor() {
-  //   let session = localStorage.getItem('session');
-
-  //   if (session) {
-  //     this.session = JSON.parse(session).session;
-  //     console.log('Session loaded:', this.session);
-  //   }
-  // }
-
   constructor() {
     let session = localStorage.getItem('session');
     if (session) {
@@ -61,7 +52,7 @@ export class AuthService {
   logout() {
     this.session = undefined;
     localStorage.removeItem('session');
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['']);
   }
 
   register({

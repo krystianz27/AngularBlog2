@@ -668,3 +668,115 @@
         at processTicksAndRejections (node:internal/process/task_queues:95:5)
         at async ConnectionManager._connect (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\connection-manager.js:332:24)
         at async C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\connection-manager.js:250:32
+2024-10-30T19:49:41.663Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:42:40.389Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:44:18.455Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:44:23.186Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:44:26.586Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:44:33.317Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:44:36.094Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:45:03.221Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:45:34.792Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:45:51.530Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:47:52.104Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:48:07.940Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:48:50.132Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:49:22.819Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:51:40.539Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-30T20:51:56.612Z error: Unknown column 'Tag.DESC' in 'order clause'
+    Error
+        at Query.run (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\sequelize.js:650:28
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+        at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)

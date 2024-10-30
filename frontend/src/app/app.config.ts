@@ -17,6 +17,6 @@ export const appConfig: ApplicationConfig = {
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
-    },
+    }, provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(),
   ],
 };
