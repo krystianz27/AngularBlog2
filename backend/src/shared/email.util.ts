@@ -31,3 +31,76 @@ export function sendForgotPasswordEmail(email: string, token: string) {
     html,
   });
 }
+
+// import { google } from "googleapis";
+
+// const gmail = google.gmail("v1");
+
+// // Funkcja do wysyłania potwierdzenia e-mail
+// export async function sendConfirmationEmail(email: string, token: string) {
+//   const subject = "Please confirm your email";
+//   const html = `
+//       <h1>Confirm your email</h1>
+//       <p>Click <a href="${process.env.BACKEND_URL}/api/auth/confirm-email/${token}">here</a> to confirm your email</p>
+//       `;
+
+//   const message = createEmailMessage(email, subject, html);
+//   await sendEmail(message);
+// }
+
+// // Funkcja do wysyłania e-maila resetowania hasła
+// export async function sendForgotPasswordEmail(email: string, token: string) {
+//   const subject = "Reset your password";
+//   const html = `
+//         <h1>Reset your password</h1>
+//         <p>Click <a href="${process.env.FRONTEND_URL}/auth/reset-password?token=${token}">here</a> to reset your password</p>
+//         `;
+
+//   const message = createEmailMessage(email, subject, html);
+//   await sendEmail(message);
+// }
+
+// // Funkcja do tworzenia wiadomości e-mail
+// function createEmailMessage(to: string, subject: string, html: string) {
+//   const boundary = "boundary-string";
+//   return [
+//     `From: "Krystian" <krystiaann27@gmail.com>`,
+//     `To: ${to}`,
+//     `Subject: ${subject}`,
+//     `Content-Type: text/html; charset="UTF-8"`,
+//     `MIME-Version: 1.0`,
+//     ``,
+//     `--${boundary}`,
+//     `Content-Type: text/html; charset="UTF-8"`,
+//     ``,
+//     html,
+//     ``,
+//     `--${boundary}--`,
+//   ].join("\n");
+// }
+
+// // Funkcja do wysyłania e-maili za pomocą Gmail API
+// async function sendEmail(message: string) {
+//   const oauth2Client = new google.auth.OAuth2(
+//     process.env.GOOGLE_CLIENT_ID,
+//     process.env.GOOGLE_CLIENT_SECRET,
+//     process.env.GOOGLE_REDIRECT_URL
+//   );
+
+//   oauth2Client.setCredentials({
+//     refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+//   });
+
+//   const accessToken = await oauth2Client.getAccessToken();
+//   oauth2Client.setCredentials({ access_token: accessToken.token });
+
+//   const res = await gmail.users.messages.send({
+//     auth: oauth2Client,
+//     userId: "me",
+//     requestBody: {
+//       raw: Buffer.from(message).toString("base64").replace(/=+$/, ""),
+//     },
+//   });
+
+//   return res.data;
+// }

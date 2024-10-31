@@ -30,7 +30,7 @@ export class User extends Model<User> {
   })
   password?: string;
 
-  @Default("pending")
+  @Default("active")
   @Column({
     allowNull: false,
     type: DataType.ENUM("active", "pending"),

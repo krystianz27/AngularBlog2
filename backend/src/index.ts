@@ -29,7 +29,7 @@ app.use("/api/auth", authRoutes);
 
 app.use((req, res, next) => {
   if (!req.path.startsWith("/api")) {
-    res.json({ message: "Wrong API ENDPOINT" });
+    res.json({ message: "Wrong" });
   } else {
     next();
   }
