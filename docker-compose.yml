@@ -1,3 +1,37 @@
+# version: "3.8"
+
+# services:
+#   backend:
+#     build:
+#       context: ./backend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - mysql
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "80:80"
+#     depends_on:
+#       - backend
+
+#   mysql:
+#     image: mysql:8.0
+#     environment:
+#       MYSQL_ROOT_PASSWORD: password
+#       MYSQL_DATABASE: blog
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+
+# volumes:
+#   mysql_data:
+
 version: "3.8"
 
 services:
@@ -9,15 +43,21 @@ services:
       - "3000:3000"
     depends_on:
       - mysql
+    volumes:
+      - ./backend:/app # Bind mount dla backendu, aby zmiany były widoczne od razu
+      - /app/node_modules # Upewnia się, że node_modules są w kontenerze, a nie na hoście
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "4200:4200"
     depends_on:
       - backend
+    volumes:
+      - ./frontend:/app # Bind mount dla frontend
+      - /app/node_modules # Pomija folder node_modules wewnątrz kontenera
 
   mysql:
     image: mysql:8.0
@@ -27,7 +67,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql # Trwały storage dla danych MySQL
 
 volumes:
   mysql_data:

@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactComponent {
   contactForm: FormGroup;
+  submitted = false; // Zmienna do śledzenia, czy formularz został wysłany
+  showErrors = false; // Zmienna do kontrolowania wyświetlania błędów
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
@@ -18,8 +20,15 @@ export class ContactComponent {
   }
 
   onSubmit() {
+    this.submitted = true; // Ustaw zmienną na true przy wysyłaniu
+    this.showErrors = true; // Włącz wyświetlanie błędów
+
     if (this.contactForm.valid) {
       console.log('Form Submitted!', this.contactForm.value);
+      // Resetuj formularz po wysłaniu
+      this.contactForm.reset();
+      this.submitted = true; // Zresetuj zmienną, aby ukryć komunikaty
+      this.showErrors = false; // Ukryj komunikaty o błędach
     }
   }
 }
