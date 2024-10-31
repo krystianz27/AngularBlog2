@@ -45,7 +45,7 @@ export class LoginComponent {
       })
       .subscribe({
         // next: () => (window.location.href = '/'),
-        next: () => console.log('Login success'),
+        next: () => console.log('Login success!'),
         error: (error) => {
           if (error && error.error && error.error.message) {
             alert(error.error.message);
