@@ -3,11 +3,11 @@ import { Tag } from "../models/Tag";
 
 export const getAllTags = (filters?: { userId?: number }) => {
   const where: any = {};
-  if (filters) {
-    if (filters.userId) {
-      where.userId = filters.userId;
-    }
-  }
+  // if (filters) {
+  //   if (filters.userId) {
+  //     where.userId = filters.userId;
+  //   }
+  // }
   return Tag.findAll({
     order: [["createdAt", "DESC"]],
     where,

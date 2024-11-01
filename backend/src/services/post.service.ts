@@ -14,9 +14,9 @@ export const getAllPosts = async (filters: {
     where.categoryId = filters.categoryId;
   }
 
-  if (filters.userId) {
-    where.userId = filters.userId;
-  }
+  // if (filters.userId) {
+  //   where.userId = filters.userId;
+  // }
 
   return await Post.findAll({
     where,
