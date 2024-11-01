@@ -780,3 +780,27 @@
         at processTicksAndRejections (node:internal/process/task_queues:95:5)
         at async MySQLQueryInterface.select (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
         at async Function.findAll (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\sequelize\src\model.js:1824:21)
+2024-10-31T20:05:05.632Z error: Missing API key. Pass it to the constructor `new Resend("re_123")`
+    Error: Missing API key. Pass it to the constructor `new Resend("re_123")`
+        at new Resend (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\resend\dist\index.js:371:15)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:9:18
+        at Generator.next (<anonymous>)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:8:71
+        at new Promise (<anonymous>)
+        at __awaiter (C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:4:12)
+        at sendConfirmationEmail (C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:16:12)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\src\controllers\auth.controller.ts:63:30
+        at Generator.next (<anonymous>)
+        at fulfilled (C:\Users\Krystian\Desktop\AngularBlog\backend\src\controllers\auth.controller.ts:5:58)
+2024-10-31T20:09:04.471Z error: Missing API key. Pass it to the constructor `new Resend("re_123")`
+    Error: Missing API key. Pass it to the constructor `new Resend("re_123")`
+        at new Resend (C:\Users\Krystian\Desktop\AngularBlog\backend\node_modules\resend\dist\index.js:371:15)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:9:18
+        at Generator.next (<anonymous>)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:8:71
+        at new Promise (<anonymous>)
+        at __awaiter (C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:4:12)
+        at sendConfirmationEmail (C:\Users\Krystian\Desktop\AngularBlog\backend\src\shared\email.util.ts:16:12)
+        at C:\Users\Krystian\Desktop\AngularBlog\backend\src\controllers\auth.controller.ts:63:30
+        at Generator.next (<anonymous>)
+        at fulfilled (C:\Users\Krystian\Desktop\AngularBlog\backend\src\controllers\auth.controller.ts:5:58)

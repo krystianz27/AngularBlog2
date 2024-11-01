@@ -12,7 +12,6 @@ import { Comment } from "./Comment";
 import { Tag } from "./Tag";
 import { PostTag } from "./PostTag";
 import { Category } from "./Category";
-import { Col } from "sequelize/types/utils";
 
 @Table
 export class Post extends Model<Post> {
