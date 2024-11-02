@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const category_controller_1 = require("../controllers/category.controller");
+const auth_util_1 = require("../shared/auth.util");
 const router = (0, express_1.Router)();
-router.get("/", category_controller_1.getCategories);
-router.post("/", category_controller_1.addCategoryController);
-router.put("/", category_controller_1.updateCategoryController);
-router.delete("/", category_controller_1.deleteCategoryController);
+router.get("/", auth_util_1.authenticateJWTOptional, category_controller_1.getCategories);
+router.get("/slug/:slug", category_controller_1.getCategoryBySlugController);
+router.post("/", auth_util_1.authenticateJWT, category_controller_1.addCategoryController);
+router.put("/", auth_util_1.authenticateJWT, category_controller_1.updateCategoryController);
+router.delete("/", auth_util_1.authenticateJWT, category_controller_1.deleteCategoryController);
 exports.default = router;

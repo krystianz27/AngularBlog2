@@ -12,7 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Category = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const User_1 = require("./User");
+const Post_1 = require("./Post");
 let Category = class Category extends sequelize_typescript_1.Model {
+    constructor() {
+        super(...arguments);
+        this.posts = [];
+    }
 };
 exports.Category = Category;
 __decorate([
@@ -39,6 +44,10 @@ __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
     __metadata("design:type", User_1.User)
 ], Category.prototype, "user", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => Post_1.Post),
+    __metadata("design:type", Array)
+], Category.prototype, "posts", void 0);
 exports.Category = Category = __decorate([
     sequelize_typescript_1.Table
 ], Category);

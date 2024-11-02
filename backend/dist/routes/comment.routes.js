@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const comment_controller_1 = require("../controllers/comment.controller");
+const auth_util_1 = require("../shared/auth.util");
+const router = (0, express_1.Router)();
+router.get("/:postId", comment_controller_1.getPostCommentsController);
+router.post("/", auth_util_1.authenticateJWT, comment_controller_1.addCommentController);
+router.put("/", auth_util_1.authenticateJWT, comment_controller_1.updateCommentController);
+router.delete("/", auth_util_1.authenticateJWT, comment_controller_1.deleteCommentController);
+exports.default = router;

@@ -15,6 +15,7 @@ const User_1 = require("./User");
 const Comment_1 = require("./Comment");
 const Tag_1 = require("./Tag");
 const PostTag_1 = require("./PostTag");
+const Category_1 = require("./Category");
 let Post = class Post extends sequelize_typescript_1.Model {
     constructor() {
         super(...arguments);
@@ -32,6 +33,7 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({
         allowNull: false,
+        type: "TEXT",
     }),
     __metadata("design:type", String)
 ], Post.prototype, "content", void 0);
@@ -50,9 +52,20 @@ __decorate([
     __metadata("design:type", Number)
 ], Post.prototype, "userId", void 0);
 __decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => Category_1.Category),
+    (0, sequelize_typescript_1.Column)({
+        allowNull: false,
+    }),
+    __metadata("design:type", Number)
+], Post.prototype, "categoryId", void 0);
+__decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
     __metadata("design:type", User_1.User)
 ], Post.prototype, "user", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => Category_1.Category),
+    __metadata("design:type", Category_1.Category)
+], Post.prototype, "category", void 0);
 __decorate([
     (0, sequelize_typescript_1.HasMany)(() => Comment_1.Comment),
     __metadata("design:type", Array)

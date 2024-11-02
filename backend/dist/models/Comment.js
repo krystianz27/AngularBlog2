@@ -14,10 +14,6 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const User_1 = require("./User");
 const Post_1 = require("./Post");
 let Comment = class Comment extends sequelize_typescript_1.Model {
-    constructor() {
-        super(...arguments);
-        this.content = "";
-    }
 };
 exports.Comment = Comment;
 __decorate([

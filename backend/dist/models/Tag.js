@@ -28,6 +28,13 @@ __decorate([
     __metadata("design:type", String)
 ], Tag.prototype, "name", void 0);
 __decorate([
+    (0, sequelize_typescript_1.Column)({
+        allowNull: false,
+        unique: true,
+    }),
+    __metadata("design:type", String)
+], Tag.prototype, "slug", void 0);
+__decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => User_1.User),
     (0, sequelize_typescript_1.Column)({
         allowNull: false,

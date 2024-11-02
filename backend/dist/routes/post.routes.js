@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const post_constroller_1 = require("../controllers/post.constroller");
+const auth_util_1 = require("../shared/auth.util");
+const router = (0, express_1.Router)();
+router.get("/", auth_util_1.authenticateJWTOptional, post_constroller_1.getAllPostsController);
+router.get("/slug/:slug", post_constroller_1.getPostBySlugController);
+router.post("/", auth_util_1.authenticateJWT, post_constroller_1.addPostController);
+router.put("/", auth_util_1.authenticateJWT, post_constroller_1.updatePostController);
+router.delete("/", auth_util_1.authenticateJWT, post_constroller_1.deletePostController);
+exports.default = router;

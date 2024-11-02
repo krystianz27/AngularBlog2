@@ -19,9 +19,6 @@ const Tag_1 = require("./Tag");
 let User = class User extends sequelize_typescript_1.Model {
     constructor() {
         super(...arguments);
-        this.name = "";
-        this.email = "";
-        this.password = "";
         this.posts = [];
         this.comments = [];
         this.tokens = [];
@@ -49,6 +46,14 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Default)("active"),
+    (0, sequelize_typescript_1.Column)({
+        allowNull: false,
+        type: sequelize_typescript_1.DataType.ENUM("active", "pending"),
+    }),
+    __metadata("design:type", String)
+], User.prototype, "status", void 0);
 __decorate([
     (0, sequelize_typescript_1.HasMany)(() => Post_1.Post),
     __metadata("design:type", Array)

@@ -30,6 +30,14 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], PostTag.prototype, "tagId", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => Post_1.Post),
+    __metadata("design:type", Post_1.Post)
+], PostTag.prototype, "post", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => Tag_1.Tag),
+    __metadata("design:type", Tag_1.Tag)
+], PostTag.prototype, "tag", void 0);
 exports.PostTag = PostTag = __decorate([
     sequelize_typescript_1.Table
 ], PostTag);

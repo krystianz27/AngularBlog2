@@ -16,9 +16,16 @@ exports.updateCategory = updateCategory;
 exports.getCategoryById = getCategoryById;
 exports.deleteCategory = deleteCategory;
 const Category_1 = require("../models/Category");
-function getAllCategories() {
+function getAllCategories(filters) {
     return __awaiter(this, void 0, void 0, function* () {
-        const categories = yield Category_1.Category.findAll();
+        const where = {};
+        // if (filters && filters.userId) {
+        //   where.userId = filters.userId;
+        // }
+        const categories = yield Category_1.Category.findAll({
+            where,
+            order: [["id", "DESC"]],
+        });
         return categories;
     });
 }

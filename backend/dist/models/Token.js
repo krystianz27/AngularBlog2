@@ -31,7 +31,7 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({
         allowNull: false,
-        type: sequelize_typescript_1.DataType.ENUM("activation", "reset"),
+        type: sequelize_typescript_1.DataType.ENUM("activation", "reset", "access", "refresh"),
     }),
     __metadata("design:type", String)
 ], Token.prototype, "type", void 0);
