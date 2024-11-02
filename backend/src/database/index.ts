@@ -8,28 +8,25 @@
 // export { connection };
 
 import { connection } from "./connection";
-import DemoDataSeeder from "../models/seeders/demo-data"; // Upewnij się, że ścieżka jest poprawna
+import DemoDataSeeder from "../models/seeders/demo-data";
 
 const seedDatabase = async () => {
   const queryInterface = connection.getQueryInterface();
   const seeder = new DemoDataSeeder();
 
-  // Synchronizuj bazę danych z ustawieniami force i alter
-  await connection.sync({ force: true, alter: false }); // Ustaw force i alter na false
-  await seeder.up(queryInterface, connection); // Użyj connection.getQueryInterface() dla Sequelize
-
-  console.log("Dane zostały załadowane do bazy danych.");
+  await connection.sync({ force: true });
+  await seeder.up(queryInterface, connection);
+  console.log("Data has been loaded into the database.");
 };
 
-// Synchronizacja połączenia i uruchomienie seeda
 connection
   .authenticate()
   .then(async () => {
-    console.log("Połączono z bazą danych.");
-    await seedDatabase(); // Uruchom seedowanie
+    console.log("Connected to the database.");
+    await seedDatabase();
   })
   .catch((error) => {
-    console.error("Błąd podczas łączenia z bazą danych:", error);
+    console.error("Error connecting to the database:", error);
   });
 
 export { connection };

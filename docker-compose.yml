@@ -1,73 +1,60 @@
-# version: "3.8"
+version: "3.9"
 
-# services:
-#   backend:
-#     build:
-#       context: ./backend
-#       dockerfile: Dockerfile
-#     ports:
-#       - "3000:3000"
-#     depends_on:
-#       - mysql
-
-#   frontend:
-#     build:
-#       context: ./frontend
-#       dockerfile: Dockerfile
-#     ports:
-#       - "80:80"
-#     depends_on:
-#       - backend
-
-#   mysql:
-#     image: mysql:8.0
-#     environment:
-#       MYSQL_ROOT_PASSWORD: password
-#       MYSQL_DATABASE: blog
-#     ports:
-#       - "3306:3306"
-#     volumes:
-#       - mysql_data:/var/lib/mysql
-
-# volumes:
-#   mysql_data:
-
-version: "3.8"
+networks:
+  my_network:
+    driver: bridge
 
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mysql
-    volumes:
-      - ./backend:/app # Bind mount dla backendu, aby zmiany były widoczne od razu
-      - /app/node_modules # Upewnia się, że node_modules są w kontenerze, a nie na hoście
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "4200:4200"
-    depends_on:
-      - backend
-    volumes:
-      - ./frontend:/app # Bind mount dla frontend
-      - /app/node_modules # Pomija folder node_modules wewnątrz kontenera
-
   mysql:
-    image: mysql:8.0
+    image: mysql:8.4.2
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: blog
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql # Trwały storage dla danych MySQL
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - my_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/src/.env
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - my_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - my_network
 
 volumes:
   mysql_data:

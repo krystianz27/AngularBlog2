@@ -1,16 +1,14 @@
 import { Sequelize } from "sequelize-typescript";
 
-export const connection = new Sequelize({
-  dialect: "mysql",
-  host: process.env.DB_HOST,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: (process.env.DB_PORT as any) || 3306,
-  models: [__dirname + "/../models"],
-});
-
-// import { Sequelize } from "sequelize-typescript";
+// export const connection = new Sequelize({
+//   dialect: "mysql",
+//   host: process.env.DB_HOST,
+//   username: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME,
+//   port: (process.env.DB_PORT as any) || 3306,
+//   models: [__dirname + "/../models"],
+// });
 
 // export const connection = new Sequelize({
 //   dialect: "mysql",
@@ -21,3 +19,13 @@ export const connection = new Sequelize({
 //   port: Number(process.env.DB_PORT) || 3306,
 //   models: [__dirname + "/../models"],
 // });
+
+export const connection = new Sequelize({
+  dialect: "mysql",
+  host: "mysql",
+  username: "root",
+  password: "password",
+  database: "blog",
+  port: 3306,
+  models: [__dirname + "/../models"],
+});

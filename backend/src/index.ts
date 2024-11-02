@@ -15,7 +15,8 @@ import logger from "./shared/logger.util";
 import cors from "cors";
 
 const app = express();
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT || "3000", 10);
 
 app.use(cors());
 app.use(express.json());
@@ -29,7 +30,7 @@ app.use("/api/auth", authRoutes);
 
 app.use((req, res, next) => {
   if (!req.path.startsWith("/api")) {
-    res.json({ message: "Wrong" });
+    res.json({ message: "Wrong API ENDPOINT" });
   } else {
     next();
   }
@@ -43,6 +44,6 @@ app.use((err: Error, req: Request, res: Response, next: any) => {
   res.status(500).send("Something went wrong");
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server is running at http://localhost:${port}`);
 });

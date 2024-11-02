@@ -56,11 +56,9 @@ export const registerController = async (req: Request, res: Response) => {
 
   const token = generateToken(user.id);
 
-  // console.log("TOKEN:", token);
-
   await addToken(token, "activation", user.id);
 
-  await sendConfirmationEmail(email, token);
+  // await sendConfirmationEmail(email, token);
 
   res.status(201).json({ message: "User registered successfully", user });
 };
@@ -239,7 +237,7 @@ export const confirmEmailController = async (req: Request, res: Response) => {
 
   await deleteTokens(userId);
 
-  // res.status(200).json({ message: "Email confirmed" });
+  res.status(200).json({ message: "Email confirmed" });
   res.redirect(process.env.FRONTEND_URL + "#/auth/login");
   return;
 };
