@@ -58,7 +58,7 @@ export const registerController = async (req: Request, res: Response) => {
 
   await addToken(token, "activation", user.id);
 
-  // await sendConfirmationEmail(email, token);
+  await sendConfirmationEmail(email, token);
 
   res.status(201).json({ message: "User registered successfully", user });
 };

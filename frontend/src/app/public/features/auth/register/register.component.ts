@@ -43,7 +43,7 @@ export class RegisterComponent {
         next: () => {
           console.log('Register success');
           this.messageService.setMessage(
-            'Your account has been created!!! A confirmation email has been sent to your email address. Please confirm your account by clicking the link in the email!'
+            'Your account has been created! A confirmation email has been sent to your email address. Please confirm your account by clicking the link in the email!'
           );
           this.router.navigate(['/auth/login']);
         },

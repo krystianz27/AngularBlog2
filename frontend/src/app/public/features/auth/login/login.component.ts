@@ -25,13 +25,12 @@ export class LoginComponent {
   successMessage: string | null = null;
 
   ngOnInit() {
-    // Subskrybuj wiadomość
     this.messageService.currentMessage.subscribe((message) => {
-      this.successMessage = message; // Ustaw wiadomość
+      this.successMessage = message;
       if (message) {
         setTimeout(() => {
-          this.successMessage = null; // Ukryj wiadomość po 5 sekundach
-          this.messageService.clearMessage(); // Wyczyść wiadomość w serwisie
+          this.successMessage = null;
+          this.messageService.clearMessage();
         }, 30000);
       }
     });
