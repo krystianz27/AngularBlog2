@@ -25,6 +25,11 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'user',
+        loadChildren: () =>
+          import('./features/users/users.module').then((m) => m.UsersModule),
+      },
+      {
         path: 'about',
         loadChildren: () =>
           import('./features/about/about.module').then((m) => m.AboutModule),

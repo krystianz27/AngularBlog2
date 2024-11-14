@@ -814,3 +814,40 @@
         at Generator.next (<anonymous>)
         at fulfilled (C:\Users\Krystian\Desktop\AngularBlog2\backend\src\controllers\auth.controller.ts:5:58)
         at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-11-13T23:44:00.456Z error: invalid_grant
+    Error: invalid_grant
+        at Gaxios._request (/app/node_modules/gaxios/build/src/gaxios.js:142:23)
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async OAuth2Client.refreshTokenNoCache (/app/node_modules/google-auth-library/build/src/auth/oauth2client.js:212:19)
+        at async OAuth2Client.refreshAccessTokenAsync (/app/node_modules/google-auth-library/build/src/auth/oauth2client.js:247:19)
+        at async OAuth2Client.getAccessTokenAsync (/app/node_modules/google-auth-library/build/src/auth/oauth2client.js:276:23)
+2024-11-13T23:45:01.899Z error: invalid_grant
+    Error: invalid_grant
+        at Gaxios._request (/app/node_modules/gaxios/build/src/gaxios.js:142:23)
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async OAuth2Client.refreshTokenNoCache (/app/node_modules/google-auth-library/build/src/auth/oauth2client.js:212:19)
+        at async OAuth2Client.refreshAccessTokenAsync (/app/node_modules/google-auth-library/build/src/auth/oauth2client.js:247:19)
+        at async OAuth2Client.getAccessTokenAsync (/app/node_modules/google-auth-library/build/src/auth/oauth2client.js:276:23)
+2024-11-13T23:49:23.896Z error: invalid_grant
+    Error: invalid_grant
+        at Gaxios._request (C:\Users\Krystian\Desktop\AngularBlog2\backend\node_modules\gaxios\src\gaxios.ts:146:15)
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async OAuth2Client.refreshTokenNoCache (C:\Users\Krystian\Desktop\AngularBlog2\backend\node_modules\google-auth-library\build\src\auth\oauth2client.js:212:19)
+        at async OAuth2Client.refreshAccessTokenAsync (C:\Users\Krystian\Desktop\AngularBlog2\backend\node_modules\google-auth-library\build\src\auth\oauth2client.js:247:19)
+        at async OAuth2Client.getAccessTokenAsync (C:\Users\Krystian\Desktop\AngularBlog2\backend\node_modules\google-auth-library\build\src\auth\oauth2client.js:276:23)
+2024-11-13T23:59:05.182Z error: Unable to refresh access token
+    Error: Unable to refresh access token
+        at C:\Users\Krystian\Desktop\AngularBlog2\backend\src\shared\gmailAuth.ts:51:11
+        at Generator.throw (<anonymous>)
+        at rejected (C:\Users\Krystian\Desktop\AngularBlog2\backend\src\shared\gmailAuth.ts:6:65)
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-11-14T00:21:17.343Z error: Cannot set headers after they are sent to the client
+    Error: Cannot set headers after they are sent to the client
+        at ServerResponse.setHeader (node:_http_outgoing:655:11)
+        at ServerResponse.header (C:\Users\Krystian\Desktop\AngularBlog2\backend\node_modules\express\lib\response.js:794:10)
+        at ServerResponse.location (C:\Users\Krystian\Desktop\AngularBlog2\backend\node_modules\express\lib\response.js:925:15)
+        at ServerResponse.redirect (C:\Users\Krystian\Desktop\AngularBlog2\backend\node_modules\express\lib\response.js:963:18)
+        at C:\Users\Krystian\Desktop\AngularBlog2\backend\src\controllers\auth.controller.ts:241:7
+        at Generator.next (<anonymous>)
+        at fulfilled (C:\Users\Krystian\Desktop\AngularBlog2\backend\src\controllers\auth.controller.ts:5:58)
+        at processTicksAndRejections (node:internal/process/task_queues:95:5)

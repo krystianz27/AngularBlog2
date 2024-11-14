@@ -233,12 +233,14 @@ export const confirmEmailController = async (req: Request, res: Response) => {
 
   console.log("TOKEN DELETE");
 
-  await updateUser(userId, undefined, undefined, "active");
+  await updateUser(userId, undefined, undefined, undefined, "active");
 
   await deleteTokens(userId);
 
-  res.status(200).json({ message: "Email confirmed" });
-  res.redirect(process.env.FRONTEND_URL + "#/auth/login");
+  // res.status(200).json({ message: "Email confirmed" });
+  // res.redirect(process.env.FRONTEND_URL + "#/auth/login");
+  res.redirect(process.env.FRONTEND_URL + "#/auth/login?confirmed=true");
+
   return;
 };
 
@@ -315,7 +317,7 @@ export const resetPasswordController = async (req: Request, res: Response) => {
 
   const encryptedPassword = encryptPassword(password);
 
-  await updateUser(userId, undefined, encryptedPassword);
+  await updateUser(userId, undefined, undefined, encryptedPassword);
 
   await deleteTokens(userId!);
 

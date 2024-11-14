@@ -105,6 +105,7 @@
 //   return res.data;
 // }
 
+//  GOOGLE API
 import { google } from "googleapis";
 import { ensureAccessToken } from "./gmailAuth";
 
@@ -114,12 +115,10 @@ const oauth2Client = new google.auth.OAuth2(
   process.env.REDIRECT_URI
 );
 
-// Ustaw tokeny, jeśli już masz
 oauth2Client.setCredentials({
   refresh_token: process.env.GMAIL_REFRESH_TOKEN,
 });
 
-// Funkcja do wysyłania e-maili
 async function sendEmail(to: string, subject: string, html: string) {
   await ensureAccessToken();
   const gmail = google.gmail({ version: "v1", auth: oauth2Client });
@@ -141,7 +140,6 @@ async function sendEmail(to: string, subject: string, html: string) {
   });
 }
 
-// Funkcja do wysłania e-maila potwierdzającego
 export async function sendConfirmationEmail(email: string, token: string) {
   const html = `
       <h1>Confirm your email</h1>
@@ -152,7 +150,6 @@ export async function sendConfirmationEmail(email: string, token: string) {
   return await sendEmail(email, subject, html);
 }
 
-// Funkcja do wysłania e-maila do resetowania hasła
 export async function sendForgotPasswordEmail(email: string, token: string) {
   const html = `
       <h1>Reset your password</h1>

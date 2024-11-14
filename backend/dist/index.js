@@ -17,6 +17,7 @@ const comment_routes_1 = __importDefault(require("./routes/comment.routes"));
 const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
 const logger_util_1 = __importDefault(require("./shared/logger.util"));
 const cors_1 = __importDefault(require("cors"));
+const user_routes_1 = __importDefault(require("./routes/user.routes"));
 const app = (0, express_1.default)();
 // const port = process.env.PORT || 3000;
 const port = parseInt(process.env.PORT || "3000", 10);
@@ -27,6 +28,7 @@ app.use("/api/categories", category_routes_1.default);
 app.use("/api/tags", tag_routes_1.default);
 app.use("/api/posts", post_routes_1.default);
 app.use("/api/comments", comment_routes_1.default);
+app.use("/api/users", user_routes_1.default);
 app.use("/api/auth", auth_routes_1.default);
 app.use((req, res, next) => {
     if (!req.path.startsWith("/api")) {

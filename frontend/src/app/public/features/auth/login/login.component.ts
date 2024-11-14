@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MessageService } from '../../../../core/services/message.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class LoginComponent {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   messageService = inject(MessageService);
+  route = inject(ActivatedRoute);
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -23,15 +24,22 @@ export class LoginComponent {
   });
 
   successMessage: string | null = null;
+  confirmed: boolean = false;
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params['confirmed']) {
+        this.confirmed = true;
+      }
+    });
+
     this.messageService.currentMessage.subscribe((message) => {
       this.successMessage = message;
       if (message) {
         setTimeout(() => {
           this.successMessage = null;
           this.messageService.clearMessage();
-        }, 30000);
+        }, 15000);
       }
     });
   }
@@ -44,7 +52,7 @@ export class LoginComponent {
       })
       .subscribe({
         // next: () => (window.location.href = '/'),
-        next: () => console.log('Login success!!'),
+        // next: () => console.log('Login success!!'),
         error: (error) => {
           if (error && error.error && error.error.message) {
             alert(error.error.message);

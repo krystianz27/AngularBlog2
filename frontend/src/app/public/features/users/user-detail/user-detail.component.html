@@ -1,0 +1,64 @@
+<h1>Edit User Profile</h1>
+
+<form (submit)="saveChanges()" [formGroup]="userForm" class="my-10">
+  <div *ngIf="successMessage" class="text-green-500 text-center mb-4">
+    {{ successMessage }}
+  </div>
+
+  <div class="mb-4">
+    <label for="name" class="block">Name</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      class="w-full p-2 border border-gray-300 rounded-md"
+      placeholder="Enter your name"
+    />
+  </div>
+
+  <div class="mb-4">
+    <label for="email" class="block">Email</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="w-full p-2 border border-gray-300 rounded-md"
+      placeholder="Enter your email"
+    />
+    <div
+      *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+      class="text-red-500 text-sm"
+    >
+      Invalid email address.
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="password" class="block">Password</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      class="w-full p-2 border border-gray-300 rounded-md"
+      placeholder="Enter new password (optional)"
+    />
+    <div
+      *ngIf="
+        userForm.get('password')?.invalid && userForm.get('password')?.touched
+      "
+      class="text-red-500 text-sm"
+    >
+      <div *ngIf="userForm.get('password')?.errors?.['minlength']">
+        Password must be at least 6 characters long.
+      </div>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="userForm.invalid"
+    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300 w-full"
+  >
+    Save Changes
+  </button>
+</form>

@@ -52,7 +52,7 @@ const registerController = (req, res) => __awaiter(void 0, void 0, void 0, funct
     delete user.password;
     const token = (0, auth_util_1.generateToken)(user.id);
     yield (0, token_service_1.addToken)(token, "activation", user.id);
-    // await sendConfirmationEmail(email, token);
+    yield (0, email_util_1.sendConfirmationEmail)(email, token);
     res.status(201).json({ message: "User registered successfully", user });
 });
 exports.registerController = registerController;
@@ -184,7 +184,7 @@ const confirmEmailController = (req, res) => __awaiter(void 0, void 0, void 0, f
         return;
     }
     console.log("TOKEN DELETE");
-    yield (0, user_service_1.updateUser)(userId, undefined, undefined, "active");
+    yield (0, user_service_1.updateUser)(userId, undefined, undefined, undefined, "active");
     yield (0, token_service_1.deleteTokens)(userId);
     res.status(200).json({ message: "Email confirmed" });
     res.redirect(process.env.FRONTEND_URL + "#/auth/login");
@@ -243,7 +243,7 @@ const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, 
         return;
     }
     const encryptedPassword = (0, auth_util_1.encryptPassword)(password);
-    yield (0, user_service_1.updateUser)(userId, undefined, encryptedPassword);
+    yield (0, user_service_1.updateUser)(userId, undefined, undefined, encryptedPassword);
     yield (0, token_service_1.deleteTokens)(userId);
     res.status(200).json({ message: "Password updated." });
     return;

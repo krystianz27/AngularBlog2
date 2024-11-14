@@ -1,40 +1,10 @@
-<!-- <form (submit)="submit()" class="card w-[400px]" [formGroup]="form">
-  <div>
-    <label for="email">Email</label>
-    <input
-      formControlName="email"
-      type="email"
-      id="email"
-      name="email"
-      placeholder="Email"
-    />
-  </div>
-
-  <div>
-    <label for="password">Password</label>
-    <input
-      formControlName="password"
-      type="password"
-      id="password"
-      name="password"
-      placeholder="Password"
-    />
-  </div>
-
-  <div class="flex justify-center mt-5">
-    <button class="w-full" [disabled]="!form.valid" type="submit">Login</button>
-  </div>
-
-  <div class="text-center mt-4 text-gray-600">
-    Don't have an account? <a routerLink="/auth/register">Register</a>
-  </div>
-
-  <div class="text-center mt-4 text-gray-600">
-    Forgot your password? <a routerLink="/auth/forgot-password">Reset</a>
-  </div>
-</form> -->
-
 <form (submit)="submit()" class="card w-[400px]" [formGroup]="form">
+  <div *ngIf="confirmed" class="text-center mb-4">
+    <p class="text-green-500">
+      Your account has been successfully confirmed. You can now log in.
+    </p>
+  </div>
+
   <div *ngIf="successMessage" class="text-green-500 text-center mb-4">
     {{ successMessage }}
   </div>

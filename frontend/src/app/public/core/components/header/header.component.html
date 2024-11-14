@@ -8,6 +8,9 @@
       <a routerLink="/">Home</a>
       <a routerLink="/about">About</a>
       <a routerLink="/contact">Contact</a>
+      <a routerLink="/user/edit" class="text-gray-600">
+        <i class="fas fa-user-circle"></i>
+      </a>
       @if(!authService.session){
       <a routerLink="/auth/login" class="cta">Login</a>
       }@else{
