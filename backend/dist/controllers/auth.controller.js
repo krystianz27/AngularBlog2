@@ -186,8 +186,9 @@ const confirmEmailController = (req, res) => __awaiter(void 0, void 0, void 0, f
     console.log("TOKEN DELETE");
     yield (0, user_service_1.updateUser)(userId, undefined, undefined, undefined, "active");
     yield (0, token_service_1.deleteTokens)(userId);
-    res.status(200).json({ message: "Email confirmed" });
-    res.redirect(process.env.FRONTEND_URL + "#/auth/login");
+    // res.status(200).json({ message: "Email confirmed" });
+    // res.redirect(process.env.FRONTEND_URL + "#/auth/login");
+    res.redirect(process.env.FRONTEND_URL + "#/auth/login?confirmed=true");
     return;
 });
 exports.confirmEmailController = confirmEmailController;

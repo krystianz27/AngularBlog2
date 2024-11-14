@@ -99,14 +99,13 @@ exports.sendForgotPasswordEmail = sendForgotPasswordEmail;
 //   });
 //   return res.data;
 // }
+//  GOOGLE API
 const googleapis_1 = require("googleapis");
 const gmailAuth_1 = require("./gmailAuth");
 const oauth2Client = new googleapis_1.google.auth.OAuth2(process.env.GMAIL_CLIENT_ID, process.env.GMAIL_CLIENT_SECRET, process.env.REDIRECT_URI);
-// Ustaw tokeny, jeśli już masz
 oauth2Client.setCredentials({
     refresh_token: process.env.GMAIL_REFRESH_TOKEN,
 });
-// Funkcja do wysyłania e-maili
 function sendEmail(to, subject, html) {
     return __awaiter(this, void 0, void 0, function* () {
         yield (0, gmailAuth_1.ensureAccessToken)();
@@ -125,7 +124,6 @@ function sendEmail(to, subject, html) {
         });
     });
 }
-// Funkcja do wysłania e-maila potwierdzającego
 function sendConfirmationEmail(email, token) {
     return __awaiter(this, void 0, void 0, function* () {
         const html = `
@@ -136,7 +134,6 @@ function sendConfirmationEmail(email, token) {
         return yield sendEmail(email, subject, html);
     });
 }
-// Funkcja do wysłania e-maila do resetowania hasła
 function sendForgotPasswordEmail(email, token) {
     return __awaiter(this, void 0, void 0, function* () {
         const html = `
