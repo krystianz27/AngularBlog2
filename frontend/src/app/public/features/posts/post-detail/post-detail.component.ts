@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PostService } from '../../../../core/services/post.service';
 import { IPost } from '../../../../core/interfaces/models/post.model.interface';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import { IPostTag } from '../../../../core/interfaces/models/post-tag.model.interface';
 import { TagService } from '../../../../core/services/tag.service';
 import { IComment } from '../../../../core/interfaces/models/comment.mode.interface';
@@ -18,7 +18,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './post-detail.component.scss',
 })
 export class PostDetailComponent {
-  moment: any = moment;
+  moment: Moment = moment();
 
   route = inject(ActivatedRoute);
   tagService = inject(TagService);
@@ -81,5 +81,9 @@ export class PostDetailComponent {
           console.error(error);
         },
       });
+  }
+
+  getFormattedDate(date: string): string {
+    return moment(date).fromNow();
   }
 }

@@ -22,7 +22,7 @@ export class UserDetailComponent {
 
   userForm: FormGroup = this.fb.group({
     name: [''],
-    email: ['', [, Validators.email]],
+    email: ['', [Validators.email]],
     password: ['', Validators.minLength(6)],
   });
 

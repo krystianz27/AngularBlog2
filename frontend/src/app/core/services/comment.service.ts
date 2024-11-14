@@ -12,8 +12,6 @@ export class CommentService {
   httpClient = inject(HttpClient);
   authService = inject(AuthService);
 
-  constructor() {}
-
   getComments(postId: number) {
     return this.httpClient.get<IComment[]>(`${this.baseUrl}/${postId}`);
   }

@@ -10,10 +10,11 @@
     />
 
     <!-- display errors -->
-    @if( form.get('name')?.touched && form.get('name')?.errors ){
-    @if(form.get('name')?.errors?.['required']){
-    <div class="text-red-500">Name is required</div>
-    } }
+    @if (form.get('name')?.touched && form.get('name')?.errors) {
+      @if (form.get('name')?.errors?.['required']) {
+        <div class="text-red-500">Name is required</div>
+      }
+    }
   </div>
 
   <div>
@@ -26,12 +27,14 @@
       placeholder="Email"
     />
     <!-- display errors -->
-    @if( form.get('email')?.touched && form.get('email')?.errors ){
-    @if(form.get('email')?.errors?.['required']){
-    <div class="text-red-500">Email is required</div>
-    } @if(form.get('email')?.errors?.['email']){
-    <div class="text-red-500">Email is invalid</div>
-    } }
+    @if (form.get('email')?.touched && form.get('email')?.errors) {
+      @if (form.get('email')?.errors?.['required']) {
+        <div class="text-red-500">Email is required</div>
+      }
+      @if (form.get('email')?.errors?.['email']) {
+        <div class="text-red-500">Email is invalid</div>
+      }
+    }
   </div>
 
   <div>
@@ -44,23 +47,24 @@
       placeholder="Password"
     />
     <!-- display errors -->
-    @if( form.get('password')?.touched && form.get('password')?.errors ){
-    @if(form.get('password')?.errors?.['required']){
-    <div class="text-red-500">Password is required</div>
-    } @if(form.get('password')?.errors?.['minlength']){
-    <div class="text-red-500">
-      Password must be at least
-      {{
-        form.get('password')?.errors?.['minlength'].requiredLength
-      }}
-      characters
-    </div>
-    } @if(form.get('password')?.errors?.['pattern']){
-    <div class="text-red-500">
-      Password must contain at least one uppercase letter, one lowercase letter
-      and one number.
-    </div>
-    } }
+    @if (form.get('password')?.touched && form.get('password')?.errors) {
+      @if (form.get('password')?.errors?.['required']) {
+        <div class="text-red-500">Password is required</div>
+      }
+      @if (form.get('password')?.errors?.['minlength']) {
+        <div class="text-red-500">
+          Password must be at least
+          {{ form.get('password')?.errors?.['minlength'].requiredLength }}
+          characters
+        </div>
+      }
+      @if (form.get('password')?.errors?.['pattern']) {
+        <div class="text-red-500">
+          Password must contain at least one uppercase letter, one lowercase
+          letter and one number.
+        </div>
+      }
+    }
   </div>
 
   <div class="flex justify-center mt-5">

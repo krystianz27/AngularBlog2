@@ -12,8 +12,6 @@ export class CategoryService {
   httpClient = inject(HttpClient);
   authService = inject(AuthService);
 
-  constructor() {}
-
   getCategoryBySlug(slug: string) {
     return this.httpClient.get<ICategory>(`${this.baseUrl}/slug/${slug}`);
   }

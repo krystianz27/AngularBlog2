@@ -78,8 +78,8 @@ export class PostsListComponent {
   deleteSelectedPosts() {
     const selectedTags = this.selection.selected;
     const selectedCategoryIds = selectedTags.map((category) => category.id);
-    let promises = selectedCategoryIds.map((id) => {
-      let ob = this.postService.deletePost(id);
+    const promises = selectedCategoryIds.map((id) => {
+      const ob = this.postService.deletePost(id);
       // convert into promise
       return lastValueFrom(ob);
     });

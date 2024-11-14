@@ -20,14 +20,14 @@ export class AuthService {
   session?: Session;
 
   constructor() {
-    let session = localStorage.getItem('session');
+    const session = localStorage.getItem('session');
     if (session) {
       this.session = JSON.parse(session);
     }
   }
 
   login({ email, password }: { email: string; password: string }) {
-    let db = this.http
+    const db = this.http
       .post<Session>(environment.BACKEND_API_URL + '/api/auth/login', {
         email: email,
         password: password,
@@ -72,7 +72,7 @@ export class AuthService {
     });
   }
 
-  forgotPassword(email: String) {
+  forgotPassword(email: string) {
     return this.http.post(
       environment.BACKEND_API_URL + '/api/auth/forgot-password',
       { email }

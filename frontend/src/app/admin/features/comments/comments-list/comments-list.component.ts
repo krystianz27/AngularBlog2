@@ -79,8 +79,8 @@ export class CommentsListComponent {
   deleteSelectedComments() {
     const selectedComments = this.selection.selected;
     const selectedCommentIds = selectedComments.map((category) => category.id);
-    let promises = selectedCommentIds.map((id) => {
-      let ob = this.commentService.deleteComment(id);
+    const promises = selectedCommentIds.map((id) => {
+      const ob = this.commentService.deleteComment(id);
       return lastValueFrom(ob);
     });
     Promise.all(promises).then(() => {

@@ -12,8 +12,6 @@ export class TagService {
 
   httpClient = inject(HttpClient);
 
-  constructor() {}
-
   getPostTags(id: number) {
     return this.httpClient.get<IPostTag[]>(
       this.baseUrl + '/getPostTagRelations/' + id

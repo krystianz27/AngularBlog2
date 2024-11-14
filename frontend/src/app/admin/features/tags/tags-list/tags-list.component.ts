@@ -75,8 +75,8 @@ export class TagsListComponent {
   deleteSelectedTags() {
     const selectedTags = this.selection.selected;
     const selectedTagIds = selectedTags.map((category) => category.id);
-    let promises = selectedTagIds.map((id) => {
-      let ob = this.tagService.deleteTag(id);
+    const promises = selectedTagIds.map((id) => {
+      const ob = this.tagService.deleteTag(id);
       return lastValueFrom(ob);
     });
     Promise.all(promises).then(() => {

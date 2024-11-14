@@ -11,12 +11,10 @@
       <a routerLink="/user/edit" class="text-gray-600">
         <i class="fas fa-user-circle"></i>
       </a>
-      @if(!authService.session){
-      <a routerLink="/auth/login" class="cta">Login</a>
-      }@else{
-
-      <button class="cta" (click)="authService.logout()">Logout</button>
-
+      @if (!authService.session) {
+        <a routerLink="/auth/login" class="cta">Login</a>
+      } @else {
+        <button class="cta" (click)="authService.logout()">Logout</button>
       }
     </div>
   </div>

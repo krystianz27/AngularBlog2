@@ -33,7 +33,7 @@ function matchPassword(): ValidatorFn {
   styleUrl: './reset-password.component.scss',
 })
 export class ResetPasswordComponent {
-  token: string = '';
+  token = '';
   route = inject(ActivatedRoute);
   router = inject(Router);
   authService = inject(AuthService);

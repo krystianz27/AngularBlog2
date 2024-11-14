@@ -8,8 +8,6 @@ export class MessageService {
   private messageSource = new BehaviorSubject<string | null>(null);
   currentMessage = this.messageSource.asObservable();
 
-  constructor() {}
-
   setMessage(message: string) {
     this.messageSource.next(message);
   }

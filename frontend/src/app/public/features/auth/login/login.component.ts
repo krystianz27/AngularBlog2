@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -12,7 +12,7 @@ import { MessageService } from '../../../../core/services/message.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   messageService = inject(MessageService);
@@ -24,7 +24,7 @@ export class LoginComponent {
   });
 
   successMessage: string | null = null;
-  confirmed: boolean = false;
+  confirmed = false;
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {

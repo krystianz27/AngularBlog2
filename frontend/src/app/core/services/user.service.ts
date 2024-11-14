@@ -11,8 +11,6 @@ export class UserService {
   private baseUrl = environment.BACKEND_API_URL + '/api/users';
   private httpClient = inject(HttpClient);
 
-  constructor() {}
-
   getUserDetails(): Observable<IUser> {
     return this.httpClient.get<IUser>(`${this.baseUrl}/me`);
   }

@@ -8,7 +8,7 @@
     <mat-card-header>
       <mat-card-title>
         <h1 class="text-left">
-          {{ form.value.id ? "Update " : "Create new " }}post
+          {{ form.value.id ? 'Update ' : 'Create new ' }}post
         </h1>
       </mat-card-title>
     </mat-card-header>
@@ -27,10 +27,10 @@
           matInput
           placeholder="Category"
         >
-          @for(category of categories; track category.id){
-          <mat-option [value]="category.id">
-            {{ category.name }}
-          </mat-option>
+          @for (category of categories; track category.id) {
+            <mat-option [value]="category.id">
+              {{ category.name }}
+            </mat-option>
           }
         </mat-select>
 
@@ -49,14 +49,14 @@
       </mat-form-field>
 
       <mat-chip-set aria-label="Fish selection">
-        @for(selectedTag of selectedTags; track selectedTag.id){
-        <mat-chip>
-          {{ selectedTag.name }}
+        @for (selectedTag of selectedTags; track selectedTag.id) {
+          <mat-chip>
+            {{ selectedTag.name }}
 
-          <button matChipRemove (click)="removeTag(selectedTag.id)">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip>
+            <button matChipRemove (click)="removeTag(selectedTag.id)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
         }
       </mat-chip-set>
 
@@ -67,28 +67,28 @@
         class="my-9 mb-5"
       >
         <mat-icon>
-          {{ showTagsDropdown ? "expand_less" : "expand_more" }}
+          {{ showTagsDropdown ? 'expand_less' : 'expand_more' }}
         </mat-icon>
         Add more tags
       </button>
 
-      @if(showTagsDropdown){
-      <mat-form-field appearance="fill" class="mt-5">
-        <mat-label>Select tag</mat-label>
-        <mat-select
-          matInput
-          placeholder="Tag"
-          (selectionChange)="addTag($event.value)"
-        >
-          @for(tag of tags; track tag.id){
-          <mat-option [value]="tag.id">
-            {{ tag.name }}
-          </mat-option>
-          }
-        </mat-select>
+      @if (showTagsDropdown) {
+        <mat-form-field appearance="fill" class="mt-5">
+          <mat-label>Select tag</mat-label>
+          <mat-select
+            matInput
+            placeholder="Tag"
+            (selectionChange)="addTag($event.value)"
+          >
+            @for (tag of tags; track tag.id) {
+              <mat-option [value]="tag.id">
+                {{ tag.name }}
+              </mat-option>
+            }
+          </mat-select>
 
-        <mat-error>Please select a category. </mat-error>
-      </mat-form-field>
+          <mat-error>Please select a category. </mat-error>
+        </mat-form-field>
       }
     </mat-card-content>
 
@@ -100,7 +100,7 @@
         [disabled]="form.invalid"
         color="primary"
       >
-        {{ form.value.id ? "Update" : "Create" }}
+        {{ form.value.id ? 'Update' : 'Create' }}
       </button>
     </mat-card-actions>
   </mat-card>

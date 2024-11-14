@@ -8,9 +8,8 @@ describe('TagDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TagDetailComponent]
-    })
-    .compileComponents();
+      imports: [TagDetailComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TagDetailComponent);
     component = fixture.componentInstance;

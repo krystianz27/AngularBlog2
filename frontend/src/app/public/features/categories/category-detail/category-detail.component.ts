@@ -18,7 +18,7 @@ export class CategoryDetailComponent {
 
   constructor() {
     this.route.params.subscribe((params) => {
-      let slug = params['category'];
+      const slug = params['category'];
 
       this.loadCategory(slug);
     });

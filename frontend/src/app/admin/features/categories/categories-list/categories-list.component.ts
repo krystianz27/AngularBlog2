@@ -77,8 +77,8 @@ export class CategoriesListComponent {
     const selectedCategoriesIds = selectedCategories.map(
       (category) => category.id
     );
-    let promises = selectedCategoriesIds.map((id) => {
-      let ob = this.categoryService.deleteCategory(id);
+    const promises = selectedCategoriesIds.map((id) => {
+      const ob = this.categoryService.deleteCategory(id);
       return lastValueFrom(ob);
     });
     Promise.all(promises).then(() => {

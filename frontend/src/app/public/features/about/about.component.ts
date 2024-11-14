@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.scss',
 })
 export class AboutComponent {
-  title: string = 'O Projekcie';
-  description: string =
+  title = 'O Projekcie';
+  description =
     'To jest przykładowy projekt wykorzystujący Angular na frontendzie i Express.js na backendzie.';
-  version: string = '1.0.0';
-  author: string = 'Krystian';
+  version = '1.0.0';
+  author = 'Krystian';
 }

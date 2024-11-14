@@ -54,7 +54,7 @@ export class PostEditorComponent {
     title: ['', Validators.required],
     id: [''],
     content: ['', Validators.required],
-    categoryId: [null, Validators.required],
+    categoryId: [-1, Validators.required],
     tagIds: this.fb.array([]),
   });
 
@@ -77,7 +77,10 @@ export class PostEditorComponent {
             id: post.id + '',
             title: post.title,
             content: post.content,
-            categoryId: post.categoryId as any,
+            categoryId:
+              post.categoryId !== null && post.categoryId !== undefined
+                ? post.categoryId
+                : -1,
           });
 
           this.form.updateValueAndValidity();
@@ -115,7 +118,7 @@ export class PostEditorComponent {
         title: this.form.value.title!,
         content: this.form.value.content!,
         categoryId: this.form.value.categoryId!,
-        tagIds: this.form.value.tagIds as any[],
+        tagIds: this.form.value.tagIds as number[],
       })
       .subscribe(() => {
         this.router.navigate(['/admin/posts']);
@@ -131,7 +134,7 @@ export class PostEditorComponent {
         title: this.form.value.title!,
         content: this.form.value.content!,
         categoryId: this.form.value.categoryId!,
-        tagIds: this.form.value.tagIds as any[],
+        tagIds: this.form.value.tagIds as number[],
       })
       .subscribe(() => {
         alert('Post updated');
@@ -142,7 +145,6 @@ export class PostEditorComponent {
     const tagIdsFormArray = this.form.get('tagIds') as FormArray;
     tagIdsFormArray.push(this.fb.control(tagId));
 
-    // hide tags dropdown
     this.showTagsDropdown = false;
   }
 
